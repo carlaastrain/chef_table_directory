@@ -16,7 +16,7 @@ class BottomBar extends StatefulWidget {
 class _BottomBarState extends State<BottomBar> {
   static final List<Widget> _widgetOptions = <Widget>[
     MyHome(),
-    const MapScreen(),
+    MapScreen(),
     FavoritesScreen(),
   ];
   int _selectedIndex = 0;
