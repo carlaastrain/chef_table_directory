@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/screens/bottom_bar.dart';
 import 'package:get_it/get_it.dart';
+import 'package:my_app/services/custom_marker_service.dart';
 
 import 'services/restaurant_service.dart';
 
-void main() {
-  setup();
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await setup();
   runApp(const MyApp());
 }
 
-void setup() {
+Future<void> setup() async {
   final restaurantService = RestaurantService();
+  final markerService = await CustomMarkerService.init();
   GetIt.I.registerSingleton<RestaurantService>(restaurantService);
+  GetIt.I.registerSingleton<CustomMarkerService>(markerService);
 }
 
 class MyApp extends StatelessWidget {

@@ -6,13 +6,11 @@ import 'package:my_app/screens/restaurant_details_screen.dart';
 import 'package:my_app/widgets/box.dart';
 
 import 'package:get_it/get_it.dart';
+import '../services/custom_marker_service.dart';
 import '../services/restaurant_service.dart';
 import '../utils/app_styles.dart';
 import '../utils/directions_model.dart';
 
-// import 'package:flutter/services.dart' show rootBundle;
-// import 'dart:ui' as ui;
-// import 'dart:typed_data';
 // import '../utils/directions_repository.dart';
 
 class MapScreen extends StatelessWidget {
@@ -33,7 +31,9 @@ class MapScreen extends StatelessWidget {
           );
         }
 
-        return Map(restaurants: snapshot.data!);
+        return Map(
+          restaurants: snapshot.data!,
+        );
       },
     );
   }
@@ -52,14 +52,12 @@ class Map extends StatefulWidget {
 }
 
 class _MapState extends State<Map> {
+  final customMarkerService = GetIt.I<CustomMarkerService>();
+
   _MapState() {
     pageController.addListener(pageControllerListener);
   }
 
-  // final  Uint8List customMarker = await getBytesFromAsset(
-  //     path: 'images/assets/foodie.png', //paste the custom image path
-  //     width: 50 // size of custom image as marker
-  //     );
   static const _initialCameraPosition = CameraPosition(
     target: LatLng(30.250652, -39.054810),
     zoom: 0,
@@ -108,11 +106,11 @@ class _MapState extends State<Map> {
     Restaurant restaurant,
     bool isSelected,
   ) {
-    if (isSelected) {
-      return BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange);
+    if (isSelected && restaurant.netflixShowName == "Chef Table Pizza") {
+      return customMarkerService.markers['pizza-black-and-white']!;
     }
     return restaurant.netflixShowName == "Chef Table Pizza"
-        ? BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueCyan)
+        ? customMarkerService.markers['pizza']!
         : BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueViolet);
   }
 
