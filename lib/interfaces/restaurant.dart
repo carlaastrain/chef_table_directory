@@ -16,7 +16,6 @@ class Restaurant {
   final String reservationsMail;
   final String contactPhone;
   final String reservations;
-  bool isFavorited;
 
   Restaurant({
     required this.chefName,
@@ -36,7 +35,6 @@ class Restaurant {
     required this.reservationsMail,
     required this.contactPhone,
     required this.reservations,
-    required this.isFavorited,
   });
 
   factory Restaurant.fromMap(Map<String, dynamic> map) {
@@ -58,7 +56,6 @@ class Restaurant {
       reservationsMail: map['reservationsMail'],
       contactPhone: map['contactPhone'],
       reservations: map['reservations'],
-      isFavorited: map['isFavorited'],
     );
   }
 }

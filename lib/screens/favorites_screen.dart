@@ -43,8 +43,7 @@ class FavoritesScreen extends StatelessWidget {
                       scrollDirection: Axis.vertical,
                       child: Column(
                           children: snapshot.data!
-                              .where((restaurantInfo) =>
-                                  restaurantInfo.isFavorited == true)
+                              .where((restaurantInfo) => false)
                               .map((restaurantInfo) => Box(
                                     restaurant: restaurantInfo,
                                   ))
@@ -66,8 +65,7 @@ class FavoritesScreen extends StatelessWidget {
                       scrollDirection: Axis.vertical,
                       child: Column(
                           children: snapshot.data!
-                              .where((restaurantInfo) =>
-                                  restaurantInfo.isFavorited == false)
+                              .where((restaurantInfo) => false)
                               .map((restaurantInfo) => Box(
                                     restaurant: restaurantInfo,
                                   ))

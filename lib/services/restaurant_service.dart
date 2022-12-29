@@ -1,4 +1,5 @@
 import '../interfaces/restaurant.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 List<Map<String, dynamic>> _restaurantData = [
   {
@@ -367,9 +368,11 @@ List<Map<String, dynamic>> _pizzaRestaurantData = [
 
 class RestaurantService {
   Future<List<Restaurant>> getRestaurants() async {
-    return _restaurantData.map((restaurant) {
-      return Restaurant.fromMap(restaurant);
-    }).toList();
+    final querySnapshot =
+        await FirebaseFirestore.instance.collection("restaurantsData").get();
+    return querySnapshot.docs
+        .map((doc) => Restaurant.fromMap(doc.data()))
+        .toList();
   }
 
   Future<List<Restaurant>> getPizzaRestaurants() async {
@@ -379,8 +382,10 @@ class RestaurantService {
   }
 
   Future<List<Restaurant>> getAllRestaurants() async {
-    return [..._restaurantData, ..._pizzaRestaurantData].map((restaurant) {
-      return Restaurant.fromMap(restaurant);
-    }).toList();
+    final querySnapshot =
+        await FirebaseFirestore.instance.collection("restaurantsData").get();
+    return querySnapshot.docs
+        .map((doc) => Restaurant.fromMap(doc.data()))
+        .toList();
   }
 }

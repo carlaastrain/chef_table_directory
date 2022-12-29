@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "4748212936",
+    "project_id": "chef-table-app",
+    "storage_bucket": "chef-table-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:4748212936:android:2e919566c88d32338743fd",
+        "android_client_info": {
+          "package_name": "com.example.my_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "4748212936-v715e1nr16p86ogsjrpj14ujnlaessr2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtMaZHmNkhC2EIftkL12NkXqA9NwJ2Sx4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "4748212936-v715e1nr16p86ogsjrpj14ujnlaessr2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "4748212936-bpoojeumqc27183p6mbrqpguffvupdn8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.myChefApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

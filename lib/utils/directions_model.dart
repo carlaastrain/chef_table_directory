@@ -15,7 +15,7 @@ class Directions {
   });
 
   factory Directions.fromMap(Map<String, dynamic> map) {
-    if ((map['routes'] as List).isEmpty) return null as Directions;
+    if ((map['routes'] as List).isEmpty) throw Exception("No routes found");
 
     //Get route info
     final data = Map<String, dynamic>.from(map['routes'][0]);

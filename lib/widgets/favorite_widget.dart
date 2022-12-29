@@ -16,9 +16,7 @@ class _MyFavouriteState extends State<MyFavourite> {
   Widget build(BuildContext context) {
     return IconButton(
         icon: Icon(
-          widget.restaurant.isFavorited == true
-              ? Icons.favorite
-              : Icons.favorite_border_outlined,
+          false ? Icons.favorite : Icons.favorite_border_outlined,
           color: Styles.pink,
         ),
         onPressed: () {
@@ -28,7 +26,7 @@ class _MyFavouriteState extends State<MyFavourite> {
 
   void _toggleFavorite() {
     setState(() {
-      widget.restaurant.isFavorited = !widget.restaurant.isFavorited;
+      ///TODO toggle
     });
   }
 }
