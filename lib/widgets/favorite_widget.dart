@@ -16,7 +16,7 @@ class _MyFavouriteState extends State<MyFavourite> {
   Widget build(BuildContext context) {
     return IconButton(
         icon: Icon(
-          false ? Icons.favorite : Icons.favorite_border_outlined,
+          Icons.favorite_border_outlined,
           color: Styles.pink,
         ),
         onPressed: () {
@@ -26,6 +26,7 @@ class _MyFavouriteState extends State<MyFavourite> {
 
   void _toggleFavorite() {
     setState(() {
+      // ignore: todo
       ///TODO toggle
     });
   }
