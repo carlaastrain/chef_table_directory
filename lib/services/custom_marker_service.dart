@@ -3,9 +3,10 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class CustomMarkerService {
   static final paths = {
-    'pizza': 'assets/images/pizza.png',
-    'pizza-color': 'assets/images/pizza_color.png',
-    'pizza-black-and-white': 'assets/images/pizza_black_and_white.png',
+    'chef-solid': 'assets/images/asset7.png',
+    'chef-outlined': 'assets/images/asset2.png',
+    'pizza-solid': 'assets/images/asset8.png',
+    'pizza-outlined': 'assets/images/asset3.png',
   };
 
   final Map<String, BitmapDescriptor> markers;
