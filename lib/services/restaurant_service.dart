@@ -19,10 +19,20 @@ class RestaurantService {
         .toList();
   }
 
+  Future<List<Restaurant>> getFranceRestaurants() async {
+    final querySnapshot = await FirebaseFirestore.instance
+        .collection("restaurantsFranceData")
+        .get();
+    return querySnapshot.docs
+        .map((doc) => Restaurant.fromMap(doc.data()))
+        .toList();
+  }
+
   Future<List<Restaurant>> getAllRestaurants() async {
     final querySnapshot = [
       ...await getRestaurants(),
-      ...await getPizzaRestaurants()
+      ...await getPizzaRestaurants(),
+      ...await getFranceRestaurants()
     ];
     return querySnapshot;
   }

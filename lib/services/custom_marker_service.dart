@@ -7,6 +7,8 @@ class CustomMarkerService {
     'chef-outlined': 'assets/images/asset2.png',
     'pizza-solid': 'assets/images/asset8.png',
     'pizza-outlined': 'assets/images/asset3.png',
+    'france-solid': 'assets/images/asset9.png',
+    'france-outlined': 'assets/images/asset10.png',
   };
 
   final Map<String, BitmapDescriptor> markers;

@@ -122,6 +122,31 @@ class MyHome extends StatelessWidget {
                             .toList());
                   }),
             ),
+            const Gap(25),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: const AppDoubleTextWidget(
+                bigText: "Chef's Tables Pizza",
+                smallText: 'View all',
+              ),
+            ),
+            const Gap(15),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.only(left: 20.0),
+              child: FutureBuilder(
+                  future: restaurantService.getFranceRestaurants(),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                    return Row(
+                        children: snapshot.data!
+                            .map((restaurantInfo) =>
+                                RestaurantWidget(restaurant: restaurantInfo))
+                            .toList());
+                  }),
+            ),
           ],
         ));
   }

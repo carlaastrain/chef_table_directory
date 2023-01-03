@@ -113,11 +113,18 @@ class _MapState extends State<Map> {
     if (isSelected && restaurant.netflixShowName == "Chef Table") {
       return customMarkerService.markers['chef-outlined']!;
     }
+
+    if (isSelected && restaurant.netflixShowName == "Chef Table France") {
+      return customMarkerService.markers['france-outlined']!;
+    }
     return restaurant.netflixShowName == "Chef Table"
         ? customMarkerService.markers['chef-solid']!
         : restaurant.netflixShowName == "Chef Table Pizza"
             ? customMarkerService.markers['pizza-solid']!
-            : BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueViolet);
+            : restaurant.netflixShowName == "Chef Table France"
+                ? customMarkerService.markers['france-solid']!
+                : BitmapDescriptor.defaultMarkerWithHue(
+                    BitmapDescriptor.hueViolet);
   }
 
   Set<Marker> createMarkers(
