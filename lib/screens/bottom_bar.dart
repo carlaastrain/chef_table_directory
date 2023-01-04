@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/screens/favorites_screen.dart';
+import 'package:my_app/screens/login_screen.dart';
 
 // import 'package:my_app/screens/favorites.dart';
 
@@ -18,6 +19,7 @@ class _BottomBarState extends State<BottomBar> {
     MyHome(),
     MapScreen(),
     FavoritesScreen(),
+    const LoginScreen(),
   ];
   int _selectedIndex = 0;
 
@@ -56,6 +58,10 @@ class _BottomBarState extends State<BottomBar> {
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite),
             label: 'Boxes',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
           ),
         ],
       ),

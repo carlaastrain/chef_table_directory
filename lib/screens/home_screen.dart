@@ -126,7 +126,7 @@ class MyHome extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: const AppDoubleTextWidget(
-                bigText: "Chef's Tables Pizza",
+                bigText: "Chef's Tables France",
                 smallText: 'View all',
               ),
             ),
