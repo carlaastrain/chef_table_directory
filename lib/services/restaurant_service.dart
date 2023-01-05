@@ -53,13 +53,9 @@ class RestaurantService {
   }
 
   Future<Restaurant> getRestaurant(String id) async {
-    final querySnapshot = await FirebaseFirestore.instance
-        .collection("restaurantsData")
-        .doc(id)
-        .get();
-    return Restaurant.fromMap(
-      id: querySnapshot.id,
-      map: querySnapshot.data()!,
-    );
+    final querySnapshot = await getAllRestaurants()
+        .then((value) => value.firstWhere((element) => element.id == id));
+
+    return querySnapshot;
   }
 }

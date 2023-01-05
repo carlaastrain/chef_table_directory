@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:my_app/screens/tabs_screen.dart';
+import 'package:get_it/get_it.dart';
+import 'package:go_router/go_router.dart';
 
 import '../utils/app_layout.dart';
 import '../utils/app_styles.dart';
 import '../widgets/login_sign_up_screen_text.dart';
 import '../widgets/login_sign_up_screen_button.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-
-import 'login_screen.dart';
+import '../services/auth_service.dart';
 
 class SigningUpScreen extends StatefulWidget {
   const SigningUpScreen({super.key});
@@ -21,6 +20,8 @@ class _SigningUpScreenState extends State<SigningUpScreen> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
+  final authService = GetIt.I<AuthService>();
 
   @override
   Widget build(BuildContext context) {
@@ -90,17 +91,12 @@ class _SigningUpScreenState extends State<SigningUpScreen> {
                 child: LogInSignUpScreenButton(
                   isLoginScreen: false,
                   onTap: () => {
-                    FirebaseAuth.instance
-                        .createUserWithEmailAndPassword(
-                            email: _emailController.text,
-                            password: _passwordController.text)
-                        .then(
-                          (value) => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const LoginScreen()),
-                          ).onError((error, stackTrace) => throw Error()),
-                        ),
+                    authService.signUpWithUsernameAndEmailAndPassword(
+                      _emailController.text,
+                      _passwordController.text,
+                      _usernameController.text,
+                    ),
+                    context.go('/login'),
                   },
                 ),
               ),
@@ -112,3 +108,6 @@ class _SigningUpScreenState extends State<SigningUpScreen> {
     );
   }
 }
+
+
+///

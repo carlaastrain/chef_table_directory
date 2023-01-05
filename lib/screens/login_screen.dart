@@ -1,9 +1,9 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:my_app/screens/tabs_screen.dart';
+import 'package:get_it/get_it.dart';
 import 'package:my_app/widgets/sign_up_option.dart';
 
+import '../services/auth_service.dart';
 import '../utils/app_layout.dart';
 import '../utils/app_styles.dart';
 import '../widgets/login_sign_up_screen_text.dart';
@@ -19,6 +19,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
+  final authService = GetIt.I<AuthService>();
 
   @override
   Widget build(BuildContext context) {
@@ -73,17 +75,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: LogInSignUpScreenButton(
                   isLoginScreen: true,
                   onTap: () => {
-                    FirebaseAuth.instance
-                        .signInWithEmailAndPassword(
-                            email: _emailController.text,
-                            password: _passwordController.text)
-                        .then(
-                          (value) => Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const Tabs()),
-                          ).onError((error, stackTrace) => throw Error()),
-                        ),
+                    authService.logInWithEmailAndPassword(
+                      _emailController.text,
+                      _passwordController.text,
+                    ),
+                    // context.go('/login'),
                   },
                 ),
               ),

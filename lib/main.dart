@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/screens/tabs_screen.dart';
 import 'package:get_it/get_it.dart';
+import 'package:my_app/services/auth_service.dart';
 import 'package:my_app/services/custom_marker_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -18,12 +18,15 @@ Future<void> setup() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
+// instance of the RestaurantService
+  final authService = AuthService();
   final restaurantService = RestaurantService();
   final markerService = await CustomMarkerService.init();
+  GetIt.I.registerSingleton<AuthService>(authService);
   GetIt.I.registerSingleton<RestaurantService>(restaurantService);
   GetIt.I.registerSingleton<CustomMarkerService>(markerService);
 }
+// Singleton its a global instance of an object that can be accessed from anywhere in the app
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

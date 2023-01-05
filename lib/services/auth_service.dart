@@ -19,7 +19,7 @@ class AuthService {
     }
   }
 
-  Future<User?> signUpWithEmailAndPassword(
+  Future<User?> signUpWithUsernameAndEmailAndPassword(
     String email,
     String password,
     String username,
@@ -48,3 +48,7 @@ class AuthService {
     await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
   }
 }
+
+
+//static you cannot hold any state in an static method. 
+//STATIC MEMBERS are defined on the class itself and INSTANCES MEMBERS are called on an instance of the class.
