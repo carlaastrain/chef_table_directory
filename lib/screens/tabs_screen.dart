@@ -7,14 +7,14 @@ import 'package:my_app/screens/login_screen.dart';
 import "home_screen.dart";
 import 'map_screen.dart';
 
-class BottomBar extends StatefulWidget {
-  const BottomBar({super.key});
+class Tabs extends StatefulWidget {
+  const Tabs({super.key});
 
   @override
-  State<BottomBar> createState() => _BottomBarState();
+  State<Tabs> createState() => _TabsState();
 }
 
-class _BottomBarState extends State<BottomBar> {
+class _TabsState extends State<Tabs> {
   static final List<Widget> _widgetOptions = <Widget>[
     MyHome(),
     MapScreen(),

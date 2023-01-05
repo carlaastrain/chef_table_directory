@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class LogInScreenTextField extends StatelessWidget {
+class LogInSignUpScreenTextField extends StatelessWidget {
   final String text;
   final IconData icon;
   final bool isPasswordType;
   final TextEditingController controller;
 
-  const LogInScreenTextField(
+  const LogInSignUpScreenTextField(
       {super.key,
       required this.text,
       required this.icon,

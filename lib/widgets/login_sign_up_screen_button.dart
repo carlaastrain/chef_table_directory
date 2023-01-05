@@ -3,13 +3,13 @@ import 'package:my_app/utils/app_layout.dart';
 
 import '../utils/app_styles.dart';
 
-class LogInScreenButton extends StatelessWidget {
-  final bool isLogin;
+class LogInSignUpScreenButton extends StatelessWidget {
+  final bool isLoginScreen;
   final Function onTap;
 
-  const LogInScreenButton({
+  const LogInSignUpScreenButton({
     super.key,
-    required this.isLogin,
+    required this.isLoginScreen,
     required this.onTap,
   });
 
@@ -25,7 +25,7 @@ class LogInScreenButton extends StatelessWidget {
         ),
       ),
       child: ElevatedButton(
-        onPressed: () => onTap,
+        onPressed: () => onTap(),
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.resolveWith((states) {
             if (states.contains(MaterialState.pressed)) {
@@ -42,7 +42,7 @@ class LogInScreenButton extends StatelessWidget {
           ),
         ),
         child: Text(
-          isLogin ? "SIGN IN" : "LOG IN",
+          isLoginScreen ? "LOG IN" : "SIGN IN",
           style: TextStyle(
             color: Colors.white.withOpacity(0.6),
             fontSize: 20,

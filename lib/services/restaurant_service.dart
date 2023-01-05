@@ -6,7 +6,12 @@ class RestaurantService {
     final querySnapshot =
         await FirebaseFirestore.instance.collection("restaurantsData").get();
     return querySnapshot.docs
-        .map((doc) => Restaurant.fromMap(doc.data()))
+        .map(
+          (doc) => Restaurant.fromMap(
+            id: doc.id,
+            map: doc.data(),
+          ),
+        )
         .toList();
   }
 
@@ -15,7 +20,12 @@ class RestaurantService {
         .collection("restaurantsPizzaData")
         .get();
     return querySnapshot.docs
-        .map((doc) => Restaurant.fromMap(doc.data()))
+        .map(
+          (doc) => Restaurant.fromMap(
+            id: doc.id,
+            map: doc.data(),
+          ),
+        )
         .toList();
   }
 
@@ -24,7 +34,12 @@ class RestaurantService {
         .collection("restaurantsFranceData")
         .get();
     return querySnapshot.docs
-        .map((doc) => Restaurant.fromMap(doc.data()))
+        .map(
+          (doc) => Restaurant.fromMap(
+            id: doc.id,
+            map: doc.data(),
+          ),
+        )
         .toList();
   }
 
@@ -35,5 +50,16 @@ class RestaurantService {
       ...await getFranceRestaurants()
     ];
     return querySnapshot;
+  }
+
+  Future<Restaurant> getRestaurant(String id) async {
+    final querySnapshot = await FirebaseFirestore.instance
+        .collection("restaurantsData")
+        .doc(id)
+        .get();
+    return Restaurant.fromMap(
+      id: querySnapshot.id,
+      map: querySnapshot.data()!,
+    );
   }
 }

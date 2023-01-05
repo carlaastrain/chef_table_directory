@@ -1,4 +1,5 @@
 class Restaurant {
+  final String id;
   final String chefName;
   final String mainImage;
   final String restaurantName;
@@ -18,6 +19,7 @@ class Restaurant {
   final String reservations;
 
   Restaurant({
+    required this.id,
     required this.chefName,
     required this.mainImage,
     required this.restaurantName,
@@ -37,8 +39,12 @@ class Restaurant {
     required this.reservations,
   });
 
-  factory Restaurant.fromMap(Map<String, dynamic> map) {
+  factory Restaurant.fromMap({
+    required String id,
+    required Map<String, dynamic> map,
+  }) {
     return Restaurant(
+      id: id,
       chefName: map['chefName'],
       mainImage: map['mainImage'],
       restaurantName: map['restaurantName'],

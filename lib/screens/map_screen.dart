@@ -247,7 +247,7 @@ class _MapState extends State<Map> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => RestaurantDetailsScreen(
-                                      restaurantInfo: restaurantInfo,
+                                      restaurantId: restaurantInfo.id,
                                     )),
                           ),
                         },

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:my_app/widgets/sign_up_option.dart';
+import 'package:my_app/screens/tabs_screen.dart';
 
 import '../utils/app_layout.dart';
 import '../utils/app_styles.dart';
-import '../widgets/login_screen_text.dart';
-import '../widgets/login_screen_button.dart';
+import '../widgets/login_sign_up_screen_text.dart';
+import '../widgets/login_sign_up_screen_button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+import 'login_screen.dart';
 
 class SigningUpScreen extends StatefulWidget {
   const SigningUpScreen({super.key});
@@ -15,6 +18,7 @@ class SigningUpScreen extends StatefulWidget {
 }
 
 class _SigningUpScreenState extends State<SigningUpScreen> {
+  final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -54,9 +58,19 @@ class _SigningUpScreenState extends State<SigningUpScreen> {
               const Gap(60),
               SizedBox(
                 height: 50,
-                child: LogInScreenTextField(
+                child: LogInSignUpScreenTextField(
                   text: 'Enter username',
                   icon: Icons.person_outline,
+                  isPasswordType: false,
+                  controller: _usernameController,
+                ),
+              ),
+              const Gap(20),
+              SizedBox(
+                height: 50,
+                child: LogInSignUpScreenTextField(
+                  text: 'Enter email',
+                  icon: Icons.email_outlined,
                   isPasswordType: false,
                   controller: _emailController,
                 ),
@@ -64,28 +78,30 @@ class _SigningUpScreenState extends State<SigningUpScreen> {
               const Gap(20),
               SizedBox(
                 height: 50,
-                child: LogInScreenTextField(
-                  text: 'Enter email',
-                  icon: Icons.email_outlined,
-                  isPasswordType: true,
-                  controller: _emailController,
-                ),
-              ),
-              const Gap(20),
-              SizedBox(
-                height: 50,
-                child: LogInScreenTextField(
+                child: LogInSignUpScreenTextField(
                   text: 'Enter password',
                   icon: Icons.lock_outline,
                   isPasswordType: true,
-                  controller: _emailController,
+                  controller: _passwordController,
                 ),
               ),
               const Gap(20),
               SizedBox(
-                child: LogInScreenButton(
-                  isLogin: true,
-                  onTap: () => {},
+                child: LogInSignUpScreenButton(
+                  isLoginScreen: false,
+                  onTap: () => {
+                    FirebaseAuth.instance
+                        .createUserWithEmailAndPassword(
+                            email: _emailController.text,
+                            password: _passwordController.text)
+                        .then(
+                          (value) => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const LoginScreen()),
+                          ).onError((error, stackTrace) => throw Error()),
+                        ),
+                  },
                 ),
               ),
               const Gap(20),

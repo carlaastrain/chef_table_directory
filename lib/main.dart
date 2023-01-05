@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/screens/bottom_bar.dart';
+import 'package:my_app/screens/tabs_screen.dart';
 import 'package:get_it/get_it.dart';
 import 'package:my_app/services/custom_marker_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 import 'services/restaurant_service.dart';
+import './router.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,14 +31,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         fontFamily: 'Raleway',
         primarySwatch: Colors.indigo,
       ),
-      home: const BottomBar(),
+      routerConfig: router,
     );
   }
 }

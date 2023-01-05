@@ -4,6 +4,7 @@ import 'package:my_app/widgets/restaurant_widget.dart';
 import 'package:my_app/utils/app_styles.dart';
 import 'package:my_app/widgets/double_text_widget.dart';
 import 'package:get_it/get_it.dart';
+import 'package:go_router/go_router.dart';
 
 import '../services/restaurant_service.dart';
 
@@ -91,8 +92,12 @@ class MyHome extends StatelessWidget {
                     }
                     return Row(
                       children: snapshot.data!
-                          .map((restaurantInfo) =>
-                              RestaurantWidget(restaurant: restaurantInfo))
+                          .map((restaurantInfo) => GestureDetector(
+                                child: RestaurantWidget(
+                                    restaurant: restaurantInfo),
+                                onTap: () => context
+                                    .push("/restaurants/${restaurantInfo.id}"),
+                              ))
                           .toList(),
                     );
                   }),
@@ -117,8 +122,12 @@ class MyHome extends StatelessWidget {
                     }
                     return Row(
                         children: snapshot.data!
-                            .map((restaurantInfo) =>
-                                RestaurantWidget(restaurant: restaurantInfo))
+                            .map((restaurantInfo) => GestureDetector(
+                                  child: RestaurantWidget(
+                                      restaurant: restaurantInfo),
+                                  onTap: () => context.push(
+                                      "/restaurants/${restaurantInfo.id}"),
+                                ))
                             .toList());
                   }),
             ),
@@ -142,8 +151,12 @@ class MyHome extends StatelessWidget {
                     }
                     return Row(
                         children: snapshot.data!
-                            .map((restaurantInfo) =>
-                                RestaurantWidget(restaurant: restaurantInfo))
+                            .map((restaurantInfo) => GestureDetector(
+                                  child: RestaurantWidget(
+                                      restaurant: restaurantInfo),
+                                  onTap: () => context.push(
+                                      "/restaurants/${restaurantInfo.id}"),
+                                ))
                             .toList());
                   }),
             ),

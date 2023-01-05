@@ -1,11 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:my_app/screens/tabs_screen.dart';
 import 'package:my_app/widgets/sign_up_option.dart';
 
 import '../utils/app_layout.dart';
 import '../utils/app_styles.dart';
-import '../widgets/login_screen_text.dart';
-import '../widgets/login_screen_button.dart';
+import '../widgets/login_sign_up_screen_text.dart';
+import '../widgets/login_sign_up_screen_button.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -49,9 +51,9 @@ class _LoginScreenState extends State<LoginScreen> {
               const Gap(60),
               SizedBox(
                 height: 50,
-                child: LogInScreenTextField(
-                  text: 'Enter username',
-                  icon: Icons.person_outline,
+                child: LogInSignUpScreenTextField(
+                  text: 'Enter email',
+                  icon: Icons.email_outlined,
                   isPasswordType: false,
                   controller: _emailController,
                 ),
@@ -59,18 +61,30 @@ class _LoginScreenState extends State<LoginScreen> {
               const Gap(20),
               SizedBox(
                 height: 50,
-                child: LogInScreenTextField(
+                child: LogInSignUpScreenTextField(
                   text: 'Enter password',
                   icon: Icons.lock_outline,
                   isPasswordType: true,
-                  controller: _emailController,
+                  controller: _passwordController,
                 ),
               ),
               const Gap(20),
               SizedBox(
-                child: LogInScreenButton(
-                  isLogin: false,
-                  onTap: () => {},
+                child: LogInSignUpScreenButton(
+                  isLoginScreen: true,
+                  onTap: () => {
+                    FirebaseAuth.instance
+                        .signInWithEmailAndPassword(
+                            email: _emailController.text,
+                            password: _passwordController.text)
+                        .then(
+                          (value) => Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Tabs()),
+                          ).onError((error, stackTrace) => throw Error()),
+                        ),
+                  },
                 ),
               ),
               const Gap(20),
