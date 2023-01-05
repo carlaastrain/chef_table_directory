@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:my_app/screens/favorites_screen.dart';
 import 'package:my_app/screens/login_screen.dart';
 
 import 'screens/tabs_screen.dart';
@@ -10,6 +11,7 @@ final router = GoRouter(routes: [
     builder: (context, state) => const Tabs(),
   ),
   GoRoute(path: '/login', builder: (context, state) => const LoginScreen()),
+  GoRoute(path: '/favorites', builder: (context, state) => FavoritesScreen()),
   GoRoute(
     path: '/restaurants/:id',
     builder: (context, state) => RestaurantDetailsScreen(
