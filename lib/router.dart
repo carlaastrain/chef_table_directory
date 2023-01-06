@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_app/screens/favorites_screen.dart';
 import 'package:my_app/screens/home_screen.dart';
+import 'package:my_app/screens/logged_screen.dart';
 import 'package:my_app/screens/login_screen.dart';
 import 'package:my_app/screens/map_screen.dart';
 
@@ -37,7 +38,7 @@ final GoRouter router = GoRouter(
           GoRoute(
               path: '/login',
               builder: (BuildContext context, GoRouterState state) =>
-                  const LoginScreen()),
+                  const LoggedScreen()),
           GoRoute(
             path: '/restaurants/:id',
             builder: (BuildContext context, GoRouterState state) =>
