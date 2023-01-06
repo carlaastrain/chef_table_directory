@@ -47,7 +47,7 @@ class _SigningUpScreenState extends State<SigningUpScreen> {
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.fromLTRB(
-                20, MediaQuery.of(context).size.height * 0.15, 20, 0),
+                20, MediaQuery.of(context).size.height * 0.05, 20, 0),
             child: Column(children: [
               Image(
                 image:
@@ -96,7 +96,7 @@ class _SigningUpScreenState extends State<SigningUpScreen> {
                       _passwordController.text,
                       _usernameController.text,
                     ),
-                    context.go('/login'),
+                    GoRouter.of(context).go('/home')
                   },
                 ),
               ),

@@ -1,52 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/screens/favorites_screen.dart';
-import 'package:my_app/screens/login_screen.dart';
+import 'package:go_router/go_router.dart';
 
-// import 'package:my_app/screens/favorites.dart';
-
-import "home_screen.dart";
-import 'map_screen.dart';
-
-class Tabs extends StatefulWidget {
-  const Tabs({super.key});
-
-  @override
-  State<Tabs> createState() => _TabsState();
-}
-
-class _TabsState extends State<Tabs> {
-  static final List<Widget> _widgetOptions = <Widget>[
-    MyHome(),
-    MapScreen(),
-    FavoritesScreen(),
-    const LoginScreen(),
-  ];
-  int _selectedIndex = 0;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
+class Tabs extends StatelessWidget {
+  final GoRouterState state;
+  final Widget child;
+  const Tabs({
+    super.key,
+    required this.state,
+    required this.child,
+  });
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text('whateveroo'),
-      //   backgroundColor: Colors.indigo[400],
-      // ),
-      body: _widgetOptions[_selectedIndex],
+      body: child,
       bottomNavigationBar: BottomNavigationBar(
-        onTap: _onItemTapped,
-        currentIndex: _selectedIndex,
         elevation: 10.0,
         showSelectedLabels: false,
         showUnselectedLabels: false,
         selectedItemColor: Colors.indigo[400],
         unselectedItemColor: Colors.grey[400],
         type: BottomNavigationBarType.fixed,
-        items: const [
+        items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
@@ -64,7 +38,43 @@ class _TabsState extends State<Tabs> {
             label: 'Profile',
           ),
         ],
+        currentIndex: _calculateSelectedIndex(context),
+        onTap: (int idx) => _onItemTapped(idx, context),
       ),
     );
+  }
+}
+
+int _calculateSelectedIndex(BuildContext context) {
+  final String location = GoRouterState.of(context).location;
+  if (location.startsWith('/home')) {
+    return 0;
+  }
+  if (location.startsWith('/map')) {
+    return 1;
+  }
+  if (location.startsWith('/favorites')) {
+    return 2;
+  }
+  if (location.startsWith('/login')) {
+    return 3;
+  }
+  return 0;
+}
+
+void _onItemTapped(int index, BuildContext context) {
+  switch (index) {
+    case 0:
+      GoRouter.of(context).go('/home');
+      break;
+    case 1:
+      GoRouter.of(context).go('/map');
+      break;
+    case 2:
+      GoRouter.of(context).go('/favorites');
+      break;
+    case 3:
+      GoRouter.of(context).go('/login');
+      break;
   }
 }
