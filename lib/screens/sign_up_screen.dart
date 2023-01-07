@@ -9,14 +9,14 @@ import '../widgets/login_sign_up_screen_text.dart';
 import '../widgets/login_sign_up_screen_button.dart';
 import '../services/auth_service.dart';
 
-class SigningUpScreen extends StatefulWidget {
-  const SigningUpScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
   @override
-  State<SigningUpScreen> createState() => _SigningUpScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _SigningUpScreenState extends State<SigningUpScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();

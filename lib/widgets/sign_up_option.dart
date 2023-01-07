@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-import '../screens/signing_up_screen.dart';
+import '../screens/sign_up_screen.dart';
 
 class SignUpOption extends StatelessWidget {
   const SignUpOption({super.key});
@@ -23,7 +23,7 @@ class SignUpOption extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const SigningUpScreen(),
+                builder: (context) => const SignUpScreen(),
               ),
             );
           },

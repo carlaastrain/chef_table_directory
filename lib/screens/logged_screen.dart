@@ -23,10 +23,17 @@ class _LoggedScreenState extends State<LoggedScreen> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              "Welcome you are logged!",
-              style:
-                  Styles.headlineStyle1.copyWith(color: Colors.grey.shade500),
+            Container(
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(width: 1.0, color: Colors.grey.shade500),
+                ),
+              ),
+              child: Text(
+                "You are logged!",
+                style:
+                    Styles.headlineStyle1.copyWith(color: Colors.grey.shade500),
+              ),
             ),
           ],
         ),
