@@ -26,10 +26,10 @@ class BuildCover extends StatelessWidget {
             ),
           ),
         ),
-        Positioned(
+        const Positioned(
           top: top,
           height: profileHeight,
-          child: const Image(
+          child: Image(
             image: AssetImage(
               'assets/images/meal-icon.png',
             ),

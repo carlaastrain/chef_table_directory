@@ -1,7 +1,27 @@
-import 'package:firebase_auth/firebase_auth.dart' show FirebaseAuth;
+import 'package:firebase_auth/firebase_auth.dart'
+    show FirebaseAuth, GoogleAuthProvider, UserCredential;
+import 'package:google_sign_in/google_sign_in.dart';
 import '../interfaces/user.dart';
 
 class AuthService {
+  Future<User?> logInWithGoogle() async {
+    final GoogleSignInAccount? googleSignInAccount =
+        await GoogleSignIn().signIn();
+
+    if (googleSignInAccount != null) {
+      final googleAuth = await googleSignInAccount.authentication;
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+      final UserCredential authResult =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+      return User(username: authResult.user!.displayName ?? 'User');
+    } else {
+      return null;
+    }
+  }
+
   Stream<User?> currentUser() {
     return FirebaseAuth.instance.authStateChanges().map((fbUser) =>
         fbUser != null ? User(username: fbUser.displayName ?? 'User') : null);
