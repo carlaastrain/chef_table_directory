@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:my_app/widgets/double_text_widget.dart';
 import 'package:get_it/get_it.dart';
 
@@ -66,9 +67,15 @@ class FavoritesScreen extends StatelessWidget {
                       child: Column(
                           children: snapshot.data!
                               .where((restaurantInfo) => true)
-                              .map((restaurantInfo) => Box(
+                              .map(
+                                (restaurantInfo) => GestureDetector(
+                                  child: Box(
                                     restaurant: restaurantInfo,
-                                  ))
+                                  ),
+                                  onTap: () => context.push(
+                                      "/restaurants/${restaurantInfo.id}"),
+                                ),
+                              )
                               .toList()),
                     ),
                   ),
