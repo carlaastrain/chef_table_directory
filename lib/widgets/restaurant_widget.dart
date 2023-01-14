@@ -13,68 +13,64 @@ class RestaurantWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = AppLayout.getSize(context);
-    return Container(
-      width: size.width * 0.6,
-      height: AppLayout.getHeight(380),
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-      margin: const EdgeInsets.only(right: 16),
-      decoration: BoxDecoration(
-        color: Colors.grey.shade600,
-        borderRadius: BorderRadius.circular(24),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.shade200,
-            blurRadius: 20,
-            spreadRadius: 5,
-          )
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            height: AppLayout.getHeight(180),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: Styles.blueMarine,
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: AssetImage(
-                  "assets/images/${restaurant.mainImage}",
+    return Material(
+      color: Colors.transparent,
+      child: Container(
+        clipBehavior: Clip.antiAlias,
+        width: size.width * 0.6,
+        height: AppLayout.getHeight(300),
+        padding: const EdgeInsets.only(bottom: 8),
+        margin: const EdgeInsets.only(right: 16),
+        decoration: BoxDecoration(
+          color: Colors.grey.shade800,
+          borderRadius: BorderRadius.circular(15),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.4),
+              blurRadius: 2,
+              spreadRadius: 2,
+            )
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              height: AppLayout.getHeight(180),
+              decoration: BoxDecoration(
+                color: Styles.blueMarine,
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage(
+                    "assets/images/${restaurant.mainImage}",
+                  ),
                 ),
               ),
             ),
-          ),
-          const Gap(10),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                restaurant.restaurantName,
-                style:
-                    Styles.headlineStyle2.copyWith(color: Colors.grey.shade200),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 8.0,
+                horizontal: 16.0,
               ),
-              const Gap(5),
-              Text(
-                '${restaurant.city}, ${restaurant.country}',
-                style: Styles.headlineStyle3.copyWith(color: Styles.pink),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    restaurant.restaurantName,
+                    style: Styles.headlineStyle2
+                        .copyWith(color: Colors.grey.shade200),
+                  ),
+                  const Gap(5),
+                  Text(
+                    '${restaurant.city}, ${restaurant.country}',
+                    style: Styles.headlineStyle3
+                        .copyWith(color: Styles.pink.withOpacity(0.9)),
+                  ),
+                ],
               ),
-            ],
-          ),
-          const Spacer(),
-          Column(
-            children: [
-              Text(
-                restaurant.description,
-                style: Styles.textStyle.copyWith(
-                  color: Colors.grey.shade200,
-                  fontSize: 12,
-                ),
-              ),
-              const Gap(5),
-            ],
-          ),
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }

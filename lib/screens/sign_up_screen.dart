@@ -8,7 +8,7 @@ import '../utils/app_styles.dart';
 import '../widgets/login_sign_up_screen_text.dart';
 import '../widgets/login_sign_up_screen_button.dart';
 import '../services/auth_service.dart';
-import '../widgets/login_with_google.dart';
+import '../widgets/login_with_google_or_apple.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -57,29 +57,30 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 width: 90,
                 color: Colors.black.withOpacity(0.3),
               ),
-              const Gap(60),
               SizedBox(
-                child: LogInWithGoogle(
+                child: LogInWithGoogleOrApple(
                   isLoginScreen: false,
                   onTap: () => {
                     authService.logInWithGoogle(),
                   },
+                  icon: Icons.account_circle,
+                  textButton: 'Sign in with Google',
+                ),
+              ),
+              SizedBox(
+                child: LogInWithGoogleOrApple(
+                  isLoginScreen: false,
+                  onTap: () => {
+                    authService.logInWithApple(),
+                  },
+                  icon: Icons.apple_outlined,
+                  textButton: 'Sign in with Apple',
                 ),
               ),
               Text(
                 'or',
                 style:
                     Styles.headlineStyle3.copyWith(color: Colors.grey.shade800),
-              ),
-              const Gap(20),
-              SizedBox(
-                height: 50,
-                child: LogInSignUpScreenTextField(
-                  text: 'Enter username',
-                  icon: Icons.person_outline,
-                  isPasswordType: false,
-                  controller: _usernameController,
-                ),
               ),
               const Gap(20),
               SizedBox(

@@ -50,24 +50,6 @@ class MyHome extends StatelessWidget {
                           ),
                         )
                       ]),
-                  const Gap(25),
-                  Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: const Color(0xFFF4F6FD)),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 12.0, vertical: 12.0),
-                    child: Row(
-                      children: [
-                        const Icon(
-                          Icons.search,
-                          color: Color(0xFFBFC205),
-                        ),
-                        const Gap(10),
-                        Text('Search', style: Styles.headlineStyle4),
-                      ],
-                    ),
-                  ),
                   const Gap(40),
                 ],
               ),
