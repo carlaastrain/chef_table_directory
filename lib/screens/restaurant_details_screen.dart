@@ -4,6 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:my_app/services/restaurant_service.dart';
 
 import '../utils/app_styles.dart';
+import '../widgets/details_row.dart';
 
 class RestaurantDetailsScreen extends StatelessWidget {
   final restaurantService = GetIt.I<RestaurantService>();
@@ -36,7 +37,6 @@ class RestaurantDetailsScreen extends StatelessWidget {
               children: [
                 Container(
                   height: 250,
-                  width: 400,
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       fit: BoxFit.cover,
@@ -49,14 +49,45 @@ class RestaurantDetailsScreen extends StatelessWidget {
                 const Icon(Icons.restaurant),
                 const Gap(20),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 6),
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Text(
                     restaurant.description,
                     style: Styles.textStyle,
                     textAlign: TextAlign.center,
                   ),
                 ),
-                const Gap(5),
+                const Gap(40),
+                DetailsRow(
+                  stringText: restaurant.address,
+                  icon: Icon(
+                    Icons.location_on,
+                    color: Styles.blueMarine,
+                  ),
+                ),
+                const Gap(20),
+                DetailsRow(
+                  stringText: restaurant.chefName,
+                  icon: Icon(
+                    Icons.person,
+                    color: Styles.blueMarine,
+                  ),
+                ),
+                const Gap(20),
+                DetailsRow(
+                  stringText: restaurant.webPage,
+                  icon: Icon(
+                    Icons.web,
+                    color: Styles.blueMarine,
+                  ),
+                ),
+                const Gap(20),
+                DetailsRow(
+                  stringText: restaurant.reservations,
+                  icon: Icon(
+                    Icons.phone,
+                    color: Styles.blueMarine,
+                  ),
+                ),
               ],
             ),
           );

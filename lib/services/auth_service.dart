@@ -17,7 +17,10 @@ class AuthService {
       );
       final UserCredential authResult =
           await FirebaseAuth.instance.signInWithCredential(credential);
-      return User(username: authResult.user!.displayName ?? 'User');
+      return User(
+        username: authResult.user!.displayName ?? 'User',
+        id: authResult.user!.uid,
+      );
     } else {
       return null;
     }
@@ -30,14 +33,17 @@ class AuthService {
         AppleIDAuthorizationScopes.fullName,
       ],
     );
-    print(credential);
 
     return null;
   }
 
   Stream<User?> currentUser() {
-    return FirebaseAuth.instance.authStateChanges().map((fbUser) =>
-        fbUser != null ? User(username: fbUser.displayName ?? 'User') : null);
+    return FirebaseAuth.instance.authStateChanges().map((user) => user != null
+        ? User(
+            username: user.displayName ?? 'User',
+            id: user.uid,
+          )
+        : null);
   }
 
   Future<User?> logInWithEmailAndPassword(String email, String password) async {
@@ -46,7 +52,10 @@ class AuthService {
       password: password,
     );
     if (credential.user != null) {
-      return User(username: credential.user!.displayName ?? 'User');
+      return User(
+        username: credential.user!.displayName ?? 'User',
+        id: credential.user!.uid,
+      );
     } else {
       return null;
     }
@@ -67,7 +76,10 @@ class AuthService {
     await FirebaseAuth.instance.currentUser!.updateDisplayName(username);
 
     if (credential.user != null) {
-      return User(username: credential.user!.displayName ?? 'User');
+      return User(
+        username: credential.user!.displayName ?? 'User',
+        id: credential.user!.uid,
+      );
     } else {
       return null;
     }

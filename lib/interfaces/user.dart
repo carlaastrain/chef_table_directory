@@ -1,5 +1,9 @@
 class User {
-  String username;
+  final String id;
+  final String username;
 
-  User({required this.username});
+  User({
+    required this.id,
+    required this.username,
+  });
 }

@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:my_app/services/auth_service.dart';
 import 'package:my_app/services/custom_marker_service.dart';
+import 'package:my_app/services/restaurant_service.dart';
+import 'package:my_app/services/favorite_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
-import 'services/restaurant_service.dart';
 import './router.dart';
 
 Future<void> main() async {
@@ -20,9 +21,11 @@ Future<void> setup() async {
   );
 // instance of the RestaurantService
   final authService = AuthService();
+  final favoriteService = FavoriteService(authService: authService);
   final restaurantService = RestaurantService();
   final markerService = await CustomMarkerService.init();
   GetIt.I.registerSingleton<AuthService>(authService);
+  GetIt.I.registerSingleton<FavoriteService>(favoriteService);
   GetIt.I.registerSingleton<RestaurantService>(restaurantService);
   GetIt.I.registerSingleton<CustomMarkerService>(markerService);
 }

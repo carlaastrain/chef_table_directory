@@ -17,7 +17,7 @@ class RestaurantWidget extends StatelessWidget {
       color: Colors.transparent,
       child: Container(
         clipBehavior: Clip.antiAlias,
-        width: size.width * 0.6,
+        width: size.width * 0.55,
         height: AppLayout.getHeight(300),
         padding: const EdgeInsets.only(bottom: 8),
         margin: const EdgeInsets.only(right: 16),

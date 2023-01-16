@@ -27,6 +27,7 @@ class MyHome extends StatelessWidget {
                 children: [
                   const Gap(40),
                   Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Column(
