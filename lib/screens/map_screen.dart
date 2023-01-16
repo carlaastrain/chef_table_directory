@@ -7,6 +7,7 @@ import 'package:my_app/widgets/box.dart';
 
 import 'package:get_it/get_it.dart';
 import '../services/custom_marker_service.dart';
+import '../services/favorite_service.dart';
 import '../services/restaurant_service.dart';
 import '../utils/app_styles.dart';
 import '../utils/directions_model.dart';
@@ -53,6 +54,7 @@ class Map extends StatefulWidget {
 
 class _MapState extends State<Map> {
   final customMarkerService = GetIt.I<CustomMarkerService>();
+  final favoriteService = GetIt.I<FavoriteService>();
 
   _MapState() {
     pageController.addListener(pageControllerListener);
@@ -251,9 +253,16 @@ class _MapState extends State<Map> {
                                     )),
                           ),
                         },
-                        child: Box(
-                          restaurant: restaurantInfo,
-                        ),
+                        child: StreamBuilder<Set<String>>(
+                            initialData: const {},
+                            stream: favoriteService.favorites(),
+                            builder: (context, favoriteSnapshot) {
+                              return Box(
+                                restaurant: restaurantInfo,
+                                isFavorite: favoriteSnapshot.data!
+                                    .contains(restaurantInfo.id),
+                              );
+                            }),
                       ),
                     )
                     .toList(),

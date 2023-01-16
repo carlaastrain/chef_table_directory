@@ -8,10 +8,12 @@ import '../interfaces/restaurant.dart';
 
 class Box extends StatelessWidget {
   final Restaurant restaurant;
+  final bool isFavorite;
 
   const Box({
     super.key,
     required this.restaurant,
+    required this.isFavorite,
   });
 
   @override
@@ -67,6 +69,7 @@ class Box extends StatelessWidget {
                       children: [
                         MyFavourite(
                           restaurant: restaurant,
+                          isFavorite: isFavorite,
                         ),
                       ],
                     )

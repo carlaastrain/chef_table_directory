@@ -1,6 +1,7 @@
 import 'package:rxdart/rxdart.dart';
 import 'auth_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../exceptions/auth_exceptions.dart';
 
 class FavoriteService {
   final AuthService authService;
@@ -22,15 +23,17 @@ class FavoriteService {
         .collection("users")
         .doc(userId)
         .snapshots()
-        .map((event) => (event.get("favorites") as List<String>).toSet());
+        .map((event) => List<String>.from(event.get("favorites")).toSet());
   }
 
-  Future<void> toggleFavorite(String userId, String restaurantId) async {
+  Future<void> toggleFavorite(String restaurantId) async {
+    final user = await authService.currentUser().first;
+    if (user == null) throw NoUserException("User is not logged in");
     final userDoc =
-        await FirebaseFirestore.instance.collection("users").doc(userId).get();
+        await FirebaseFirestore.instance.collection("users").doc(user.id).get();
     List<String> favorites;
     try {
-      favorites = userDoc.get("favorites") as List<String>;
+      favorites = List.from(userDoc.get("favorites"));
     } catch (e) {
       favorites = [];
     }
