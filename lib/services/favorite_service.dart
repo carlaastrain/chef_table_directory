@@ -23,7 +23,9 @@ class FavoriteService {
         .collection("users")
         .doc(userId)
         .snapshots()
-        .map((event) => List<String>.from(event.get("favorites")).toSet());
+        .map((event) => event.exists
+            ? List<String>.from(event.get("favorites")).toSet()
+            : {});
   }
 
   Future<void> toggleFavorite(String restaurantId) async {
@@ -31,12 +33,9 @@ class FavoriteService {
     if (user == null) throw NoUserException("User is not logged in");
     final userDoc =
         await FirebaseFirestore.instance.collection("users").doc(user.id).get();
-    List<String> favorites;
-    try {
-      favorites = List.from(userDoc.get("favorites"));
-    } catch (e) {
-      favorites = [];
-    }
+
+    final List<String> favorites =
+        userDoc.exists ? List.from(userDoc.get("favorites")) : [];
     if (favorites.contains(restaurantId)) {
       favorites.remove(restaurantId);
     } else {
