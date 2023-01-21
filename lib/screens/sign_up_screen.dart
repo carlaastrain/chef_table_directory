@@ -86,6 +86,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
               SizedBox(
                 height: 50,
                 child: LogInSignUpScreenTextField(
+                  text: 'Enter username',
+                  icon: Icons.person_outline,
+                  isPasswordType: false,
+                  controller: _usernameController,
+                ),
+              ),
+              const Gap(20),
+              SizedBox(
+                height: 50,
+                child: LogInSignUpScreenTextField(
                   text: 'Enter email',
                   icon: Icons.email_outlined,
                   isPasswordType: false,

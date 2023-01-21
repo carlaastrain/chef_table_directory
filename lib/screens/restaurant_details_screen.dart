@@ -66,7 +66,7 @@ class RestaurantDetailsScreen extends StatelessWidget {
                   ),
                   const Gap(40),
                   Container(
-                    height: AppLayout.getHeight(200),
+                    height: AppLayout.getHeight(160),
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,

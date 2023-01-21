@@ -3,8 +3,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class RestaurantService {
   Future<List<Restaurant>> getRestaurants() async {
-    final querySnapshot =
-        await FirebaseFirestore.instance.collection("restaurantsData").get();
+    final querySnapshot = await FirebaseFirestore.instance
+        .collection("restaurantsData")
+        .where("netflixShowName", isEqualTo: "Chef Table")
+        .get();
     return querySnapshot.docs
         .map(
           (doc) => Restaurant.fromMap(
@@ -17,7 +19,8 @@ class RestaurantService {
 
   Future<List<Restaurant>> getPizzaRestaurants() async {
     final querySnapshot = await FirebaseFirestore.instance
-        .collection("restaurantsPizzaData")
+        .collection("restaurantsData")
+        .where("netflixShowName", isEqualTo: "Chef Table Pizza")
         .get();
     return querySnapshot.docs
         .map(
@@ -31,7 +34,8 @@ class RestaurantService {
 
   Future<List<Restaurant>> getFranceRestaurants() async {
     final querySnapshot = await FirebaseFirestore.instance
-        .collection("restaurantsFranceData")
+        .collection("restaurantsData")
+        .where("netflixShowName", isEqualTo: "Chef Table France")
         .get();
     return querySnapshot.docs
         .map(
@@ -44,12 +48,16 @@ class RestaurantService {
   }
 
   Future<List<Restaurant>> getAllRestaurants() async {
-    final querySnapshot = [
-      ...await getRestaurants(),
-      ...await getPizzaRestaurants(),
-      ...await getFranceRestaurants()
-    ];
-    return querySnapshot;
+    final querySnapshot =
+        await FirebaseFirestore.instance.collection("restaurantsData").get();
+    return querySnapshot.docs
+        .map(
+          (doc) => Restaurant.fromMap(
+            id: doc.id,
+            map: doc.data(),
+          ),
+        )
+        .toList();
   }
 
   Future<Restaurant> getRestaurant(String id) async {

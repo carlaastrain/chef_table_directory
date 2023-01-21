@@ -33,7 +33,7 @@ class AuthService {
         AppleIDAuthorizationScopes.fullName,
       ],
     );
-
+    print(credential);
     return null;
   }
 
