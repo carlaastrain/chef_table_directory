@@ -3,8 +3,23 @@ import 'package:firebase_auth/firebase_auth.dart'
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import '../interfaces/user.dart';
+import 'package:rxdart/rxdart.dart';
 
 class AuthService {
+  late ValueStream<User?> currentUser;
+
+  AuthService() {
+    currentUser = FirebaseAuth.instance
+        .authStateChanges()
+        .map((user) => user != null
+            ? User(
+                username: user.displayName ?? 'User',
+                id: user.uid,
+              )
+            : null)
+        .shareValueSeeded(null);
+  }
+
   Future<User?> logInWithGoogle() async {
     final GoogleSignInAccount? googleSignInAccount =
         await GoogleSignIn().signIn();
@@ -35,15 +50,6 @@ class AuthService {
     );
     print(credential);
     return null;
-  }
-
-  Stream<User?> currentUser() {
-    return FirebaseAuth.instance.authStateChanges().map((user) => user != null
-        ? User(
-            username: user.displayName ?? 'User',
-            id: user.uid,
-          )
-        : null);
   }
 
   Future<User?> logInWithEmailAndPassword(String email, String password) async {

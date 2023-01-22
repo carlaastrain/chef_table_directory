@@ -9,7 +9,7 @@ class FavoriteService {
   FavoriteService({required this.authService});
 
   Stream<Set<String>> favorites() {
-    return authService.currentUser().flatMap((user) {
+    return authService.currentUser.flatMap((user) {
       if (user == null) {
         return Stream.value({});
       } else {
@@ -29,7 +29,7 @@ class FavoriteService {
   }
 
   Future<void> toggleFavorite(String restaurantId) async {
-    final user = await authService.currentUser().first;
+    final user = authService.currentUser.value;
     if (user == null) throw NoUserException("User is not logged in");
     final userDoc =
         await FirebaseFirestore.instance.collection("users").doc(user.id).get();

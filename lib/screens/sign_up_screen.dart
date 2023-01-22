@@ -60,8 +60,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
               SizedBox(
                 child: LogInWithGoogleOrApple(
                   isLoginScreen: false,
-                  onTap: () => {
-                    authService.logInWithGoogle(),
+                  onTap: () async => {
+                    await authService.logInWithGoogle(),
+                    GoRouter.of(context).go('/home')
                   },
                   icon: Icons.account_circle,
                   textButton: 'Sign in with Google',
