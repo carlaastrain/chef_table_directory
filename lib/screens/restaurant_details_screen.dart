@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get_it/get_it.dart';
 import 'package:my_app/services/restaurant_service.dart';
-import 'package:my_app/utils/app_layout.dart';
 
 import '../utils/app_styles.dart';
 import '../widgets/details_row.dart';
@@ -66,7 +65,6 @@ class RestaurantDetailsScreen extends StatelessWidget {
                   ),
                   const Gap(40),
                   Container(
-                    height: AppLayout.getHeight(160),
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
