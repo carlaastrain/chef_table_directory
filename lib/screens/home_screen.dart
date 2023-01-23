@@ -18,8 +18,7 @@ class MyHome extends StatelessWidget {
     return Scaffold(
         backgroundColor: Styles.bgColor,
         body: ListView(
-          shrinkWrap: true,
-          physics: const ClampingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           children: [
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
