@@ -35,17 +35,30 @@ class FavoritesScreen extends StatelessWidget {
                   builder: (context, favoriteSnapshot) {
                     return ListView(
                       children: [
-                        const Gap(45),
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 40.0),
-                          child: const AppDoubleTextWidget(
-                            bigText: "All your favorites tables",
-                            smallText: '',
+                          margin: EdgeInsets.only(
+                            top: (favoriteSnapshot.data != null &&
+                                    favoriteSnapshot.data!.isNotEmpty)
+                                ? 40
+                                : 0,
                           ),
+                          child: (favoriteSnapshot.data != null &&
+                                  favoriteSnapshot.data!.isNotEmpty)
+                              ? const AppDoubleTextWidget(
+                                  bigText: "All your favorites tables",
+                                  smallText: '',
+                                )
+                              : null,
                         ),
                         Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 9.0, vertical: 12.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 9.0),
+                          margin: EdgeInsets.only(
+                            bottom: (favoriteSnapshot.data != null &&
+                                    favoriteSnapshot.data!.isNotEmpty)
+                                ? 20
+                                : 0,
+                          ),
                           child: SingleChildScrollView(
                             scrollDirection: Axis.vertical,
                             child: Column(
@@ -60,17 +73,20 @@ class FavoritesScreen extends StatelessWidget {
                                     .toList()),
                           ),
                         ),
-                        const Gap(45),
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                          margin: EdgeInsets.only(
+                              top: (favoriteSnapshot.data != null &&
+                                      favoriteSnapshot.data!.isNotEmpty)
+                                  ? 0
+                                  : 40),
                           child: const AppDoubleTextWidget(
                             bigText: "Add tables to your favorites",
                             smallText: '',
                           ),
                         ),
                         Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 9.0, vertical: 12.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 9.0),
                           child: SingleChildScrollView(
                               scrollDirection: Axis.vertical,
                               child: Column(

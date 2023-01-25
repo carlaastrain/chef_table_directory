@@ -12,8 +12,6 @@ import '../services/restaurant_service.dart';
 import '../utils/app_styles.dart';
 import '../utils/directions_model.dart';
 
-// import '../utils/directions_repository.dart';
-
 class MapScreen extends StatelessWidget {
   final restaurantService = GetIt.I<RestaurantService>();
 
@@ -166,7 +164,7 @@ class _MapState extends State<Map> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: false,
-        title: const Text("CHEFS MAP"),
+        title: const Text("GREAT CHEF'S MAP"),
         backgroundColor: Styles.blueMarine,
         actions: [
           TextButton(
@@ -273,46 +271,4 @@ class _MapState extends State<Map> {
       ),
     );
   }
-
-  // void _addMarker(LatLng position) async {
-  //   if (_origin == null || (_origin != null && _destination != null)) {
-  //     setState(() {
-  //       _origin = Marker(
-  //         markerId: const MarkerId('origin'),
-  //         infoWindow: const InfoWindow(title: 'Origin'),
-  //         icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
-  //         position: position,
-  //       );
-  //       _destination = null;
-  //       _info = null;
-  //     });
-  //   } else {
-  //     setState(() {
-  //       _destination = Marker(
-  //         markerId: const MarkerId('destination'),
-  //         infoWindow: const InfoWindow(title: 'Destination'),
-  //         icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
-  //         position: position,
-  //       );
-  //     });
-  //   }
-  // }
-
-  //     // Get directions
-  //     final directions = await DirectionsRepository().getDirections(
-  //         origin: _origin!.position, destination: _destination!.position);
-  //     setState(() => {_info = directions});
-  //   }
-  // }
-
-  // Future<Uint8List> getBytesFromAsset(
-  //     {required String path, required int width}) async {
-  //   ByteData data = await rootBundle.load(path);
-  //   ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List(),
-  //       targetWidth: width);
-  //   ui.FrameInfo fi = await codec.getNextFrame();
-  //   return (await fi.image.toByteData(format: ui.ImageByteFormat.png))!
-  //       .buffer
-  //       .asUint8List();
-  // }
 }

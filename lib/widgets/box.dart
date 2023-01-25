@@ -62,6 +62,7 @@ class Box extends StatelessWidget {
                     AppColumnLayout(
                       firstText: restaurant.restaurantName,
                       secondText: restaurant.chefName,
+                      thirdText: restaurant.country,
                       alignment: CrossAxisAlignment.start,
                     ),
                     Row(

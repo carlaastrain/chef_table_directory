@@ -7,13 +7,15 @@ import '../utils/app_styles.dart';
 class AppColumnLayout extends StatelessWidget {
   final String firstText;
   final String secondText;
+  final String thirdText;
   final CrossAxisAlignment alignment;
 
   const AppColumnLayout(
       {super.key,
       required this.firstText,
       required this.secondText,
-      required this.alignment});
+      required this.alignment,
+      required this.thirdText});
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +29,11 @@ class AppColumnLayout extends StatelessWidget {
         Gap(AppLayout.getHeight(5)),
         Text(
           secondText,
+          style: Styles.headlineStyle4,
+        ),
+        Gap(AppLayout.getHeight(5)),
+        Text(
+          thirdText,
           style: Styles.headlineStyle4,
         ),
       ],
