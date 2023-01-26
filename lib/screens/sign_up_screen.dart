@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get_it/get_it.dart';
-import 'package:go_router/go_router.dart';
+import 'package:my_app/widgets/sign_up_option.dart';
 
+import '../services/auth_service.dart';
 import '../utils/app_layout.dart';
 import '../utils/app_styles.dart';
 import '../widgets/login_sign_up_screen_text.dart';
 import '../widgets/login_sign_up_screen_button.dart';
-import '../services/auth_service.dart';
-import '../widgets/login_with_google_or_apple.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -28,7 +27,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sign up'),
         backgroundColor: Styles.blueMarine,
         elevation: 0,
       ),
@@ -48,42 +46,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.fromLTRB(
-                20, MediaQuery.of(context).size.height * 0.05, 20, 0),
+                20, MediaQuery.of(context).size.height * 0.15, 20, 0),
             child: Column(children: [
               Image(
                 image:
                     const AssetImage('assets/images/foodie_signing_screen.png'),
                 fit: BoxFit.fitWidth,
-                width: 90,
+                width: 120,
                 color: Colors.black.withOpacity(0.3),
               ),
-              SizedBox(
-                child: LogInWithGoogleOrApple(
-                  isLoginScreen: false,
-                  onTap: () async => {
-                    await authService.logInWithGoogle(),
-                    GoRouter.of(context).go('/home')
-                  },
-                  icon: Icons.account_circle,
-                  textButton: 'Sign in with Google',
-                ),
-              ),
-              SizedBox(
-                child: LogInWithGoogleOrApple(
-                  isLoginScreen: false,
-                  onTap: () => {
-                    authService.logInWithApple(),
-                  },
-                  icon: Icons.apple_outlined,
-                  textButton: 'Sign in with Apple',
-                ),
-              ),
-              Text(
-                'or',
-                style:
-                    Styles.headlineStyle3.copyWith(color: Colors.grey.shade800),
-              ),
-              const Gap(20),
+              const Gap(60),
               SizedBox(
                 height: 50,
                 child: LogInSignUpScreenTextField(
@@ -116,14 +88,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
               const Gap(20),
               SizedBox(
                 child: LogInSignUpScreenButton(
-                  isLoginScreen: false,
+                  isLoginScreen: true,
                   onTap: () => {
-                    authService.signUpWithUsernameAndEmailAndPassword(
+                    authService.logInWithEmailAndPassword(
                       _emailController.text,
                       _passwordController.text,
-                      _usernameController.text,
                     ),
-                    GoRouter.of(context).go('/home')
                   },
                 ),
               ),
@@ -135,6 +105,3 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 }
-
-
-///

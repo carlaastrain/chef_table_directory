@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-
 import '../screens/sign_up_screen.dart';
 
 class SignUpOption extends StatelessWidget {
@@ -28,7 +27,7 @@ class SignUpOption extends StatelessWidget {
             );
           },
           child: const Text(
-            'Sign up',
+            'Sign up with email',
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,

@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get_it/get_it.dart';
+import 'package:go_router/go_router.dart';
 import 'package:my_app/widgets/sign_up_option.dart';
 
-import '../services/auth_service.dart';
 import '../utils/app_layout.dart';
 import '../utils/app_styles.dart';
 import '../widgets/login_sign_up_screen_text.dart';
 import '../widgets/login_sign_up_screen_button.dart';
+import '../services/auth_service.dart';
+import '../widgets/login_with_google_or_apple.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class LogInScreen extends StatefulWidget {
+  const LogInScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<LogInScreen> createState() => _LogInScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LogInScreenState extends State<LogInScreen> {
+  final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -25,6 +28,10 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Styles.blueMarine,
+        elevation: 0,
+      ),
       body: Container(
         width: AppLayout.getSize(context).width,
         height: AppLayout.getSize(context).height,
@@ -41,16 +48,42 @@ class _LoginScreenState extends State<LoginScreen> {
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.fromLTRB(
-                20, MediaQuery.of(context).size.height * 0.15, 20, 0),
+                20, MediaQuery.of(context).size.height * 0.05, 20, 0),
             child: Column(children: [
               Image(
                 image:
                     const AssetImage('assets/images/foodie_signing_screen.png'),
                 fit: BoxFit.fitWidth,
-                width: 220,
+                width: 90,
                 color: Colors.black.withOpacity(0.3),
               ),
-              const Gap(60),
+              SizedBox(
+                child: LogInWithGoogleOrApple(
+                  isLoginScreen: false,
+                  onTap: () async => {
+                    await authService.logInWithGoogle(),
+                    GoRouter.of(context).go('/home')
+                  },
+                  icon: Icons.account_circle,
+                  textButton: 'Sign in with Google',
+                ),
+              ),
+              SizedBox(
+                child: LogInWithGoogleOrApple(
+                  isLoginScreen: false,
+                  onTap: () => {
+                    authService.logInWithApple(),
+                  },
+                  icon: Icons.apple_outlined,
+                  textButton: 'Sign in with Apple',
+                ),
+              ),
+              Text(
+                'or',
+                style:
+                    Styles.headlineStyle3.copyWith(color: Colors.grey.shade800),
+              ),
+              const Gap(20),
               SizedBox(
                 height: 50,
                 child: LogInSignUpScreenTextField(
@@ -73,18 +106,19 @@ class _LoginScreenState extends State<LoginScreen> {
               const Gap(20),
               SizedBox(
                 child: LogInSignUpScreenButton(
-                  isLoginScreen: true,
+                  isLoginScreen: false,
                   onTap: () => {
-                    authService.logInWithEmailAndPassword(
+                    authService.signUpWithUsernameAndEmailAndPassword(
                       _emailController.text,
                       _passwordController.text,
+                      _usernameController.text,
                     ),
-                    // context.go('/login'),
+                    GoRouter.of(context).go('/home')
                   },
                 ),
               ),
+              const SignUpOption(),
               const Gap(20),
-              const SignUpOption()
             ]),
           ),
         ),
@@ -92,3 +126,6 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
+
+
+///

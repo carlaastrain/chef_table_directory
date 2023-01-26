@@ -42,7 +42,7 @@ class LogInSignUpScreenButton extends StatelessWidget {
           ),
         ),
         child: Text(
-          isLoginScreen ? "LOG IN" : "SIGN IN",
+          isLoginScreen ? "SIGN UP" : "Log in with email",
           style: TextStyle(
             color: Colors.white.withOpacity(0.6),
             fontSize: 20,

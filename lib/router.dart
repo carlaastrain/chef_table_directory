@@ -4,7 +4,7 @@ import 'package:my_app/screens/favorites_screen.dart';
 import 'package:my_app/screens/home_screen.dart';
 
 import 'package:my_app/screens/map_screen.dart';
-import 'package:my_app/screens/sign_up_screen.dart';
+import 'package:my_app/screens/log_in_screen.dart';
 
 import 'screens/tabs_screen.dart';
 import 'screens/restaurant_details_screen.dart';
@@ -38,7 +38,7 @@ final GoRouter router = GoRouter(
           GoRoute(
               path: '/login',
               builder: (BuildContext context, GoRouterState state) =>
-                  const SignUpScreen()),
+                  const LogInScreen()),
           GoRoute(
             path: '/restaurants/:id',
             builder: (BuildContext context, GoRouterState state) =>
