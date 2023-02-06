@@ -59,6 +59,9 @@ int _calculateSelectedIndex(BuildContext context) {
   if (location.startsWith('/login')) {
     return 3;
   }
+  if (location.startsWith('/loggedin')) {
+    return 3;
+  }
   return 0;
 }
 
@@ -75,6 +78,9 @@ void _onItemTapped(int index, BuildContext context) {
       break;
     case 3:
       GoRouter.of(context).go('/login');
+      break;
+    case 4:
+      GoRouter.of(context).go('/loggedin');
       break;
   }
 }

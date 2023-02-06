@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get_it/get_it.dart';
-import 'package:my_app/widgets/sign_up_option.dart';
 
 import '../services/auth_service.dart';
 import '../utils/app_layout.dart';

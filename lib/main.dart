@@ -6,13 +6,14 @@ import 'package:my_app/services/restaurant_service.dart';
 import 'package:my_app/services/favorite_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'package:go_router/go_router.dart';
 
 import './router.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await setup();
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 Future<void> setup() async {
@@ -32,7 +33,10 @@ Future<void> setup() async {
 // Singleton its a global instance of an object that can be accessed from anywhere in the app
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final authService = GetIt.I.get<AuthService>();
+  late final GoRouter router = createRouter(authService);
+
+  MyApp({super.key});
 
   // This widget is the root of your application.
   @override

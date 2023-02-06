@@ -29,7 +29,7 @@ class FavoriteService {
   }
 
   Future<void> toggleFavorite(String restaurantId) async {
-    final user = authService.currentUser.value;
+    final user = await authService.currentUser.first;
     if (user == null) throw NoUserException("User is not logged in");
     final userDoc =
         await FirebaseFirestore.instance.collection("users").doc(user.id).get();

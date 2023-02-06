@@ -1,16 +1,17 @@
+
 import 'package:flutter/material.dart';
 
 import '../utils/app_styles.dart';
 import '../widgets/build_cover.dart';
 
-class LoggedScreen extends StatefulWidget {
-  const LoggedScreen({super.key});
+class LoggedInScreen extends StatefulWidget {
+  const LoggedInScreen({super.key});
 
   @override
-  State<LoggedScreen> createState() => _LoggedScreenState();
+  State<LoggedInScreen> createState() => _LoggedInScreenState();
 }
 
-class _LoggedScreenState extends State<LoggedScreen> {
+class _LoggedInScreenState extends State<LoggedInScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +31,7 @@ class _LoggedScreenState extends State<LoggedScreen> {
                 ),
               ),
               child: Text(
-                "You are logged!",
+                "You are logged in!",
                 style:
                     Styles.headlineStyle1.copyWith(color: Colors.grey.shade500),
               ),
