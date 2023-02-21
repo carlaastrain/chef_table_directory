@@ -96,7 +96,7 @@ class RestaurantDetailsScreen extends StatelessWidget {
                         DetailsRow(
                           stringText: restaurant.reservations,
                           icon: Icon(
-                            Icons.phone,
+                            Icons.table_bar,
                             color: Styles.blueMarine,
                           ),
                         ),

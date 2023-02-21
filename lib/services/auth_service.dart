@@ -101,5 +101,7 @@ class AuthService {
 }
 
 
+
+
 //static you cannot hold any state in an static method. 
 //STATIC MEMBERS are defined on the class itself and INSTANCES MEMBERS are called on an instance of the class.
