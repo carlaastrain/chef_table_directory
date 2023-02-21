@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get_it/get_it.dart';
 import 'package:my_app/services/restaurant_service.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../utils/app_styles.dart';
 import '../widgets/details_row.dart';
@@ -85,19 +88,29 @@ class RestaurantDetailsScreen extends StatelessWidget {
                           ),
                         ),
                         const Gap(20),
-                        DetailsRow(
-                          stringText: restaurant.webPage,
-                          icon: Icon(
-                            Icons.web,
-                            color: Styles.blueMarine,
+                        GestureDetector(
+                          onTap: () {
+                            launchUrl(Uri.parse(restaurant.webPage));
+                          },
+                          child: DetailsRow(
+                            stringText: restaurant.webPage,
+                            icon: Icon(
+                              Icons.web,
+                              color: Styles.blueMarine,
+                            ),
                           ),
                         ),
                         const Gap(20),
-                        DetailsRow(
-                          stringText: restaurant.reservations,
-                          icon: Icon(
-                            Icons.table_bar,
-                            color: Styles.blueMarine,
+                        GestureDetector(
+                          onTap: () {
+                            launchUrl(Uri.parse(restaurant.reservations));
+                          },
+                          child: DetailsRow(
+                            stringText: restaurant.reservations,
+                            icon: Icon(
+                              Icons.table_bar,
+                              color: Styles.blueMarine,
+                            ),
                           ),
                         ),
                       ],
