@@ -89,7 +89,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 child: LogInSignUpScreenButton(
                   isLoginScreen: true,
                   onTap: () => {
-                    authService.logInWithEmailAndPassword(
+                    authService.signUpWithUsernameAndEmailAndPassword(
+                      _usernameController.text,
                       _emailController.text,
                       _passwordController.text,
                     ),
