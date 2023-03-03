@@ -26,7 +26,7 @@ Personal project flutter WIP:
 
 
 
-## Getting Started![Uploading Simulator Screen Shot - iPhone 14 - 2023-03-02 at 21.20.42_iphone13blue_portrait.png…]()
+## Getting Started
 
 
 This project is a starting point for a Flutter application.
